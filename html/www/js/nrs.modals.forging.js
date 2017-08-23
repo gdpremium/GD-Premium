@@ -55,6 +55,7 @@ var NRS = (function(NRS, $) {
 				type: 'danger'
 			});
 		}
+		NRS.updateForgingStatus();
 	};
 
 	var forgingIndicator = $("#forging_indicator");
@@ -146,7 +147,7 @@ var NRS = (function(NRS, $) {
         } else if (NRS.state.isScanning) {
             status = NRS.constants.NOT_FORGING;
             tooltip = $.t("error_forging_blockchain_rescanning");
-        } else if (NRS.needsAdminPassword && NRS.getAdminPassword() == "" && (!secretPhrase || !NRS.isForgingSafe())) {
+        //} else if (NRS.needsAdminPassword && NRS.getAdminPassword() == "" && (!secretPhrase || !NRS.isForgingSafe())) {
             // do not change forging status
         } else {
             var params = {};
@@ -158,36 +159,16 @@ var NRS = (function(NRS, $) {
             }
             NRS.sendRequest("getForging", params, function (response) {
                 NRS.isAccountForging = false;
-                if ("account" in response) {
-                    status = NRS.constants.FORGING;
-                    tooltip = NRS.getForgingTooltip(response);
-                    NRS.isAccountForging = true;
-                } else if ("generators" in response) {
-                    if (response.generators.length == 0) {
-                        status = NRS.constants.NOT_FORGING;
-                        tooltip = $.t("not_forging_not_started_tooltip");
-                    } else {
-                        status = NRS.constants.FORGING;
-                        if (response.generators.length == 1) {
-                            tooltip = NRS.getForgingTooltip(response.generators[0]);
-                        } else {
-                            tooltip = $.t("forging_more_than_one_tooltip", { "generators": response.generators.length });
-                            for (var i=0; i< response.generators.length; i++) {
-                                if (response.generators[i].account == NRS.accountInfo.account) {
-                                    NRS.isAccountForging = true;
-                                }
-                            }
-                            if (NRS.isAccountForging) {
-                                tooltip += ", " + $.t("forging_current_account_true");
-                            } else {
-                                tooltip += ", " + $.t("forging_current_account_false");
-                            }
-                        }
-                    }
-                } else {
-                    status = NRS.constants.UNKNOWN;
-                    tooltip = NRS.escapeRespStr(response.errorDescription);
-                }
+                status = NRS.constants.NOT_FORGING;
+                tooltip = $.t("not_forging_not_started_tooltip");
+
+                if ((JSON.stringify(response).indexOf(NRS.accountInfo.accountRS) > 0) &&
+                	(JSON.stringify(response).indexOf("deadline") > 0)){
+					NRS.isAccountForging = true;
+                	status = NRS.constants.FORGING;
+                	tooltip = $.t("forging_current_account_true");
+				}
+
             }, { isAsync: false });
         }
         setForgingIndicatorStatus(status);

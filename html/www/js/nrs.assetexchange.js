@@ -440,7 +440,7 @@ var NRS = (function (NRS, $, undefined) {
             rows += "data-cache='" + i + "' ";
             rows += "data-asset='" + NRS.escapeRespStr(asset.asset) + "'" + (!ungrouped ? " data-groupname='" + NRS.escapeRespStr(asset.groupName) + "'" : "");
             rows += (isClosedGroup ? " style='display:none'" : "") + " data-closed='" + isClosedGroup + "'>";
-            rows += "<h4 class='list-group-item-heading' style='text-transform: uppercase;'>" + NRS.escapeRespStr(asset.name) + "</h4>";
+            rows += "<h4 class='list-group-item-heading' style='text-transform: uppercase;'>" + NRS.escapeRespStr(asset.description) + "</h4>";
             rows += "<p class='list-group-item-text'><span>" + $.t('quantity') + "</span>: " + NRS.formatQuantity(ownsQuantityQNT, asset.decimals) + "</p>";
             rows += "</a>";
         }
@@ -592,6 +592,7 @@ var NRS = (function (NRS, $, undefined) {
             $("#asset_id").html(NRS.getTransactionLink(assetId));
             $("#asset_decimals").html(NRS.escapeRespStr(asset.decimals));
             $("#asset_name").html(NRS.escapeRespStr(asset.name));
+            $("#asset_name_description").html(NRS.escapeRespStr(asset.description));
             $("#asset_description").html(String(asset.description).autoLink());
             $(".asset_name").html(NRS.escapeRespStr(asset.name));
             $("#sell_asset_button").data("asset", assetId);
@@ -1645,9 +1646,9 @@ var NRS = (function (NRS, $, undefined) {
                 "<td class='numeric'>" + (lowestAskOrder != -1 ? NRS.formatOrderPricePerWholeQNT(lowestAskOrder, asset.decimals, askDecimals) : "") + "</td>" +
                 "<td class='numeric'>" + (highestBidOrder != -1 ? NRS.formatOrderPricePerWholeQNT(highestBidOrder, asset.decimals, bidDecimals) : "") + "</td>" +
                 "<td class='numeric'>" + (highestBidOrder != -1 ? NRS.formatAmount(totalNQT, false, false, valueDecimals) : "") + "</td>" +
-                //"<td>" +
-                //    "<a href='#' class='btn btn-xs btn-default' data-toggle='modal' data-target='#transfer_asset_modal' data-asset='" + NRS.escapeRespStr(asset.asset) + "' data-name='" + NRS.escapeRespStr(asset.name) + "' data-decimals='" + NRS.escapeRespStr(asset.decimals) + "' data-action='transfer_asset'>" + $.t("transfer") + "</a>" +
-                //"</td>" +
+                "<td>" +
+                    "<a href='#' class='btn btn-xs btn-default' data-toggle='modal' data-target='#transfer_asset_modal' data-asset='" + NRS.escapeRespStr(asset.asset) + "' data-name='" + NRS.escapeRespStr(asset.name) + "' data-decimals='" + NRS.escapeRespStr(asset.decimals) + "' data-action='transfer_asset'>" + $.t("transfer") + "</a>" +
+                "</td>" +
             "</tr>";
         }
         NRS.dataLoaded(rows);
