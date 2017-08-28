@@ -92,7 +92,7 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (typeof PassPhraseGenerator == "undefined") {
 			$.when(
-				$.getScript("js/crypto/passphrasegenerator.js")
+				$.getScript("js/crypto/passphrasegenerator.js?t=1")
 			).done(function() {
 				$loading.hide();
 				$loaded.show();

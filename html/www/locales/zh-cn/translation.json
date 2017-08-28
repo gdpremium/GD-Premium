@@ -1619,5 +1619,11 @@
   "regional_format": "区域格式",
   "max_nxt_decimals": "最大 GD Premium ( GD2 ) 数",
   "remember_me": "保持登陆信息",
-  "is_check_remember_me": "勾选保持登陆信息"
+  "is_check_remember_me": "勾选保持登陆信息",
+  "has_a_balance_of": "目前余额为",
+  "last_block_time": "最新区块(时间)",
+  "active_forgers": "有效锻造",
+  "hit_time": "锻造时间",
+  "remaining": "剩余时间",
+  "generator_timing_accuracy_warning": "备注:以下数据或有30秒的延迟。",
 }

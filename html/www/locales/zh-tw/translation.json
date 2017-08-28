@@ -1618,5 +1618,11 @@
   "regional_format": "區域格式",
   "max_nxt_decimals": "最大GD Premium (gd2)數",
   "remember_me": "保持登陸信息",
-  "is_check_remember_me": "勾選保持登陸信息"
+  "is_check_remember_me": "勾選保持登陸信息",
+  "has_a_balance_of": "目前餘額為",
+  "last_block_time": "最新區塊(時間)",
+  "active_forgers": "有效鍛造",
+  "hit_time": "鍛造時間",
+  "remaining": "剩餘時間",
+  "generator_timing_accuracy_warning": "備註:以下數據或有30秒的延遲。"
 }

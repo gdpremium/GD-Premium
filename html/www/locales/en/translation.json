@@ -1864,5 +1864,6 @@
   "working_offline": "You are working offline",
   "offline_actions": "Offline Actions",
   "success_clipboard_copy": "Copied to the clipboard successfully.",
-  "this_is_your_account": "This is your account"
+  "this_is_your_account": "This is your account",
+  "active_forgers": "Active Forgers"
 }
