@@ -85,8 +85,8 @@ var NRS = (function(NRS, $) {
 
     NRS.loadModalHTMLTemplates = function() {
         jQuery.ajaxSetup({ async: false });
-        
-        $.get("html/modals/templates.html", '', function (data) {
+
+        $.get("html/modals/templates.html?t=1", '', function (data) {
             _replaceModalHTMLTemplateDiv(data, 'recipient_modal_template');
             _replaceModalHTMLTemplateDiv(data, 'add_message_modal_template');
             _replaceModalHTMLTemplateDiv(data, 'add_public_message_modal_template');
@@ -173,7 +173,7 @@ var NRS = (function(NRS, $) {
         menuHTML += '</li>';
         _appendToSidebar(menuHTML, options["id"], options["desiredPosition"]);
     };
-    
+
     NRS.appendMenuItemToTSMenuItem = function(itemId, options) {
         if (!NRS.isApiEnabled(options.depends)) {
             return;
